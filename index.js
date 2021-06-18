@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 require('custom-env').env(process.env.NODE_ENV);
-import { log, error, debug } from './src/slackbot.mjs';
+import { logger } from './src/slacker.mjs';
+import { getStamp, triggerRestart } from './src/autostart.mjs';
 
 //Main executing function
 (async () => {
    try {
-      log("Sarting the goatr service");
+      logger.info("Sarting the goatr service");
+      logger.info(getStamp());
+      //setTimeout(() => { triggerRestart(); }, 4000);
    }
    catch(err) {
-      error(err);
+      error(err.toString());
    }
 })();
