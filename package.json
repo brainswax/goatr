@@ -1,0 +1,19 @@
+{
+  "name": "goatr",
+  "version": "1.0.0",
+  "description": "Test integration logging an application to slack/discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "NODE_ENV=production nodemon -r esm index.js"
+  },
+  "author": "brainswax",
+  "license": "Apache-2.0",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jest": "^27.0.4",
+    "nodemon": "^2.0.7"
+  }
+}
