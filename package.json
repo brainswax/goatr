@@ -13,6 +13,8 @@
     "test": "test"
   },
   "dependencies": {
+    "custom-env": "^2.0.1",
+    "esm": "^3.2.25",
     "jest": "^27.0.4",
     "nodemon": "^2.0.7"
   }
