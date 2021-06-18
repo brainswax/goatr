@@ -1,3 +1,4 @@
+import os from 'os';
 import fs from 'fs';
 import util from 'util';
 import * as proc from 'process';
@@ -28,6 +29,8 @@ function getStamp() {
    stamp.platform = proc.platform;
    stamp.uptime = proc.uptime();
    stamp.memory = proc.memoryUsage();
+   stamp.hostname = os.hostname();
+   stamp.version = os.version();
    return JSON.stringify(stamp, null, "\t");
 };
 
