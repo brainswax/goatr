@@ -1,7 +1,13 @@
 #!/usr/bin/env node
+require('custom-env').env(process.env.NODE_ENV);
+import { log, error, debug } from './src/slackbot.mjs';
 
 //Main executing function
 (async () => {
-   console.log("Sarting goatr");
-   console.log(`Hook: ${process.env.SLACK_HOOK}`);
+   try {
+      log("Sarting the goatr service");
+   }
+   catch(err) {
+      error(err);
+   }
 })();

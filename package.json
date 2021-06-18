@@ -13,6 +13,7 @@
     "test": "test"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "custom-env": "^2.0.1",
     "esm": "^3.2.25",
     "jest": "^27.0.4",
