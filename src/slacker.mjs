@@ -38,6 +38,7 @@ function formatInfo(log) {
 function formatDebug(log) {
    return { mkdwn: true,
             attachments: [{
+               title: "Debug",
                color: "#BBBBBB",
                text: log,
             }],
@@ -46,8 +47,9 @@ function formatDebug(log) {
 
 // Send a message to slack
 async function notify(msg) {
-   try { await axios.post(process.env.SLACK_HOOK, msg); }
-   catch(err) { console.error(`Error: ${err}`); }
+      await axios.post(process.env.SLACK_HOOK, msg)
+         .then((msg) => console.info(`Info: ${msg}`))
+         .catch((err) => { console.error(`Error: ${err}`); });
 }
 
 // Send a normal log message to slack
@@ -67,13 +69,13 @@ logger.error = function(log) {
 
 // Send an error message to slack
 logger.warn = function(log) {
-   console.error(`Warning: ${log}`);
+   console.warn(`Warning: ${log}`);
    notify(formatWarn(log));
 }
 
 // Send an error message to slack
 logger.info = function(log) {
-   console.error(`Info: ${log}`);
+   console.info(`Info: ${log}`);
    notify(formatInfo(log));
 }
 

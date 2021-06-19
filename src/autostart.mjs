@@ -3,6 +3,7 @@ import fs from 'fs';
 import util from 'util';
 import * as proc from 'process';
 import * as cenv from 'custom-env';
+import { logger } from './slacker.mjs';
 
 cenv.env(process.env.NODE_ENV);
 
@@ -37,12 +38,12 @@ function getStamp() {
 async function triggerRestart() {
    try {
       let stamp = getStamp();
-      console.log(stamp);
+      logger.info(stamp);
       writeFile(process.env.RESTART_FILE, stamp);
       return stamp;
    }
    catch(err) {
-      console.error(err);
+      logger.error(err);
    }
 }
 
