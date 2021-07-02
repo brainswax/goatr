@@ -4,10 +4,10 @@ import { logger } from './src/slacker.mjs';
 import { getStamp, triggerRestart } from './src/autostart.mjs';
 import util from 'util';
 
-const delay = util.promisify(setTimeout);
+const delay = util.promisify(setTimeout)
 
 //Main executing function
-(async () => {
+;(async () => {
    logger.info("Sarting the goatr service");
 
 // Throw an error after 5 seconds to cause the script to restart
