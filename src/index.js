@@ -1,17 +1,19 @@
 #!/usr/bin/env node
-require('custom-env').env(process.env.NODE_ENV);
-import { logger } from './src/slacker.mjs';
-import { getStamp, triggerRestart } from './src/autostart.mjs';
-import util from 'util';
+import { logger } from './src/slacker.mjs'
+require('custom-env').env(process.env.NODE_ENV)
 
-const delay = util.promisify(setTimeout)
+// const prettySpace = '    ' // Used for formatting JSON in logs
+const app = {}
+app.exited = false
 
-//Main executing function
+// Main executing function
 ;(async () => {
-   logger.info("Sarting the goatr service");
+  process.on('beforeExit', (code) => {
+    if (!app.exited) { app.exited = true; logger.info(`== about to exit with code: ${code}`) }
+  })
+  process.on('exit', (code) => { console.info(`== exiting with code: ${code}`) })
 
-// Throw an error after 5 seconds to cause the script to restart
-//   delay(5000)
-//      .then(() => { throw "Here's a forced exception!"; })
-//      .catch((err) => { logger.error(err.toString()); triggerRestart(); });
-})();
+  import('../package.json')
+    .then(pkg => { logger.info(`== starting ${pkg.default.name}@${pkg.default.version}`) })
+    .catch(e => { console.error(`Unable to open package information: ${e}`) })
+})()
