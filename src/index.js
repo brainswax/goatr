@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { logger } from './src/slacker.mjs'
+import { logger } from './slacker.mjs'
 require('custom-env').env(process.env.NODE_ENV)
 
 // const prettySpace = '    ' // Used for formatting JSON in logs
